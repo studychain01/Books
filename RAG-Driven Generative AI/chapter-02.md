@@ -226,7 +226,7 @@ It can feel overwhelming—no one should tackle all of this alone!
 
 ### **Figure 2.3: RAG Pipeline Components**
 
-![Figure 2.3: RAG pipeline components](images/rag-pipeline.png)
+![Figure 2.3: RAG pipeline components](assets/rag-pipeline.png)
 
 The project is divided into three main components, each handled by a dedicated group:
 
