@@ -209,9 +209,43 @@ A **full-fledged system** designed to:
 
 > **In real-life production environments or large-scale projects, it is rare for a single program or team to manage end-to-end processes.** We are now ready to draw the blueprint of the RAG pipeline that we will build in Python in this chapter.
 
+---
 
+## 🚦 A RAG-Driven Generative AI Pipeline
+
+Let’s dive into what a real-life RAG pipeline looks like. Imagine you’re part of a team tasked with delivering a complete system in just a few weeks. Right away, questions start flying:
+
+- **Who’s going to gather and clean up all the data?**
+- **Who’s setting up OpenAI’s embedding model?**
+- **Who’s writing the code to generate embeddings and manage the vector store?**
+- **Who’s implementing GPT-4 and handling its outputs?**
+
+It can feel overwhelming—no one should tackle all of this alone!
+
+> **Solution:** Split the work into specialized teams, each focusing on a different part of the pipeline. This modular approach makes the project manageable and efficient.
+
+### **Figure 2.3: RAG Pipeline Components**
+
+![Figure 2.3: RAG pipeline components](images/rag-pipeline.png)
+
+The project is divided into three main components, each handled by a dedicated group:
+
+### 1️⃣ **Data Collection & Preparation (D1, D2)**
+- **Team 1:** Collects and cleans the data, ensuring it’s ready for downstream processing.
+
+### 2️⃣ **Data Embedding & Storage (D2, D3)**
+- **Team 2:** Processes the cleaned data through OpenAI’s embedding model and stores the resulting vectors in an Activeloop Deep Lake dataset.
+
+### 3️⃣ **Augmented Generation (D4, G1-G4, E1)**
+- **Team 3:** Handles user input, retrieval queries, and content generation using GPT-4. This team focuses on prompt engineering, output generation, and evaluation.
+
+> **Why this works:**
+> - Each team can focus on their specialty without distractions.
+> - Work progresses in parallel, reducing bottlenecks.
+> - The project feels less daunting and more achievable.
+
+The organization shown in Figure 2.3 is a practical variant of the RAG ecosystem’s framework (see also Figure 1.3 in Chapter 1).
 
 ---
 
-## A RAG-driven generative AI pipeline 
-
+We’re now ready to begin building a RAG pipeline!
