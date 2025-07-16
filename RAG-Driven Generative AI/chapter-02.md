@@ -246,6 +246,53 @@ The project is divided into three main components, each handled by a dedicated g
 
 The organization shown in Figure 2.3 is a practical variant of the RAG ecosystem’s framework (see also Figure 1.3 in Chapter 1).
 
----
 
-We’re now ready to begin building a RAG pipeline!
+
+Evaluating the output with cosine similarity
+
+## 📊 Evaluating Output with Cosine Similarity
+
+In this section, we explore how to measure the similarity between user input and the generative AI model's output using cosine similarity. This evaluation technique helps us understand how well our RAG pipeline is performing and whether the generated responses are semantically aligned with both the original user prompts and the augmented input.
+
+### **Understanding Cosine Similarity**
+
+Cosine similarity is a mathematical technique that measures the cosine of the angle between two vectors, providing a score between -1 and 1. In the context of text analysis, it helps us quantify how similar two pieces of text are to each other.
+
+### **Two Approaches to Similarity Measurement**
+
+#### **1. TF-IDF Based Similarity**
+When using Term Frequency-Inverse Document Frequency (TF-IDF) vectorization, cosine similarity relies heavily on exact vocabulary overlap. This approach considers important language features such as semantic meanings, synonyms, and contextual usage. However, this method may produce lower similarity scores for texts that are conceptually similar but differ in word choice.
+
+#### **2. Sentence Transformer Based Similarity**
+Using Sentence Transformers involves embeddings that capture deeper semantic relationships between words and phrases. This approach is more effective in recognizing contextual and conceptual similarity between texts, even when they use different vocabulary.
+
+### **Model Selection for Semantic Analysis**
+
+For our implementation, we use the **all-MiniLM-L6-v2** model from the Hugging Face Model Hub. This model is part of the sentence-transformers library and offers:
+
+- **Compact and efficient architecture** for quick processing
+- **Strong performance** in generating meaningful sentence embeddings
+- **Semantic understanding** that goes beyond simple word matching
+
+### **Evaluation Results Comparison**
+
+When comparing the two approaches:
+
+- **TF-IDF Similarity Score:** Lower scores (around 0.396) even for acceptable human responses
+- **Sentence Transformer Similarity Score:** Higher scores (around 0.739) that better capture semantic relationships
+
+### **Key Insights**
+
+The choice of evaluation metrics depends on the specific requirements of each project phase. While TF-IDF provides a baseline understanding of text similarity, Sentence Transformers offer more nuanced semantic analysis that better aligns with how humans understand text relationships.
+
+### **Production Considerations**
+
+When implementing these evaluation techniques in production environments, consider:
+
+- **Separate Pipeline Component:** Evaluation could be its own modular component
+- **Dependency Management:** Careful installation of additional libraries to avoid conflicts
+- **Scalability:** Choose evaluation methods that can handle the expected volume of queries
+- **Customization:** Adapt evaluation criteria based on specific use case requirements
+
+This evaluation framework provides a foundation for measuring RAG pipeline performance. In Chapter 3, we'll explore advanced metrics when implementing index-based RAG with LlamaIndex, Deep Lake, and OpenAI.
+

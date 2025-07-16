@@ -23,3 +23,10 @@ mcp dev file_name
 - Or run `file_name.py` directly
 
 ---
+
+### MCP Agentic Framework
+- mcp_agent isn’t just a helper package — it’s a modular, production-grade agentic framework built by LastMile AI
+
+https://github.com/lastmile-ai/mcp-agent
+
+
