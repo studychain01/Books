@@ -55,6 +55,108 @@ A modular system is composed of independent modules, each designed to handle a s
 
 ---
 
+## Multimodal Performance Metrics and Evaluation
+
+### Multimodal Performance Metric
+
+Evaluating images returned by a system presents unique challenges, especially at scale where automation is required. Relying solely on dataset labels is insufficient for comprehensive assessment. The proposed method leverages GPT-4o's computer vision capabilities to analyze images, identify objects, and provide detailed descriptions that can be compared against expected labels using cosine similarity.
+
+**Key Components:**
+- **GPT-4o Integration:** A multimodal generative AI model capable of analyzing complex visual data
+- **Base64 Encoding:** Converts binary image data into ASCII text characters for smooth transmission over HTTP protocols
+- **Cosine Similarity:** Measures the similarity between expected and generated descriptions
+
+### Image Encoding Process
+
+Images must be encoded for data transmission to GPT-4o. Base64 encoding transforms binary data into standard ASCII text characters, ensuring smooth transmission over text-handling protocols and preventing data corruption or interpretation errors.
+
+**Implementation:**
+```python
+import base64
+
+IMAGE_PATH = "/content/boxed_image.jpg"
+
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+
+base64_image = encode_image(IMAGE_PATH)
+```
+
+### OpenAI Client Setup and Response Processing
+
+**Client Initialization:**
+```python
+from openai import OpenAI
+
+client = OpenAI(api_key=openai.api_key)
+MODEL = "gpt-4o"
+```
+
+**Response Processing:**
+```python
+u_word = unique_words[0]
+print(u_word)
+```
+
+### Image Analysis with GPT-4o
+
+The system instructs GPT-4o to analyze images looking for specific target labels (e.g., "truck"). The model receives both system and user role instructions to identify and describe objects within bounding boxes.
+
+**Analysis Request:**
+```python
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {"role": "system", "content": f"You are a helpful assistant that analyzes images that contain {u_word}."},
+        {"role": "user", "content": [
+            {"type": "text", "text": f"Analyze the following image, tell me if there is one {u_word} or more in the bounding boxes and analyze them:"},
+            {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{base64_image}"}}
+        ]}
+    ],
+    temperature=0.0
+)
+
+response_image = response.choices[0].message.content
+print(response_image)
+```
+
+### Performance Evaluation
+
+**Cosine Similarity Calculation:**
+```python
+resp = u_word + "s"  # Align with multiple objects in response
+multimodal_similarity_score = calculate_cosine_similarity_with_embeddings(resp, str(response_image))
+print(f"Cosine Similarity Score: {multimodal_similarity_score:.3f}")
+```
+
+**Overall System Performance:**
+```python
+score = (llm_similarity_score + multimodal_similarity_score) / 2
+print(f"Multimodal, Modular Score: {score:.3f}")
+```
+
+### Key Insights and Challenges
+
+1. **Complex Image Analysis:** Even with high similarity scores, complex images remain challenging to analyze with precision, though continuous progress is being made in this area.
+
+2. **Human Feedback Importance:** The metric can be improved because human observers can identify relevant images that automated systems might miss. This explains why top AI agents like ChatGPT, Gemini, and Bing Copilot always include feedback processes with thumbs up and thumbs down mechanisms.
+
+3. **Automated Assessment Limitations:** While automated metrics provide valuable insights, they may not capture the full context and relevance that human observers can identify, especially for complex visual data.
+
+4. **Performance Metrics:** The multimodal modular score combines LLM and multimodal similarity scores to provide a comprehensive evaluation of system performance.
+
+### Key Points Summary
+
+- **Multimodal Evaluation:** Uses GPT-4o's vision capabilities to analyze images and compare descriptions with expected labels
+- **Base64 Encoding:** Essential for transmitting image data to multimodal AI models
+- **Cosine Similarity:** Measures the alignment between expected and generated descriptions
+- **Human Feedback Integration:** Critical for improving automated assessment systems
+- **Modular Scoring:** Combines multiple similarity scores for comprehensive performance evaluation
+- **Complex Image Challenges:** Automated analysis of complex images remains an ongoing challenge requiring human oversight
+
+---
+
 ## Summary of Chapter 4: Multimodular RAG for Drone Technology
 
 This chapter introduces a modular Retrieval-Augmented Generation (RAG) system designed for drone technology, integrating both textual and image data. The system is built using LlamaIndex, Deep Lake, and OpenAI LLMs, and is structured to handle different data types through specialized modules:
