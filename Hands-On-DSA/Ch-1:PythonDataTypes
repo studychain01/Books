@@ -1,0 +1,43 @@
+documentation: https://docs.python.org/3/reference/index.html
+tutorial: https://docs.python.org/3/tutorial/index.html
+
+type python in cmd to start python 
+
+in other languages data type must be declared initially. Python is dynamically typed language, teh data type of the variables is not required to be explicitly defind. 
+They python interpreter implicitly binds the value fo the variable with its type at runtime. 
+
+type function can be used to check the data type in python 
+
+var = 13.2
+print(var) will be float
+
+print(type(var))
+var = "Now the type is string"
+print(type(var)) will be string 
+
+
+print (type(12+31j)) is complex 
+
+
+Principal Built in types: 
+Numeric types: Integer (int), float, complex
+Boolean types: bool 
+Sequence types: String(str), range, list, tuple
+Mapping types: dictionary (dict)
+Set types: set, frozenset
+
+
+in python booleans 0 is false, and any other number is true 
+
+print(type(bool(22))) # <class 'bool'>
+print(type(True)) # <class 'bool'>
+print(type(False)) # <class 'bool'>
+
+print(bool(False)) #False
+print(bool(0)) #False
+print(bool(11)) #True 
+print(bool(-2.3)) #True 
+
+
+
+

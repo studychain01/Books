@@ -1,0 +1,40 @@
+# Preface
+
+Welcome to **Hands-On Data Structures and Algorithms with Python**! This book is your comprehensive guide to mastering fundamental computer science concepts through practical Python implementations.
+
+## 📚 Additional Resources
+
+### 📖 Bonus Content
+Access additional chapters and supplementary materials:
+- **Download**: [Bonus Content PDF](https://static.packt-cdn.com/downloads/9781801073448_Bonus_Content.pdf)
+
+### 💻 Source Code Repository
+Get the complete source code for all examples and exercises:
+- **GitHub Repository**: [Hands-On Data Structures and Algorithms with Python - Third Edition](https://github.com/PacktPublishing/Hands-On-Data-Structures-and-Algorithms-with-Python-Third-Edition/tree/main)
+
+### 🎨 Color Images
+For better visualization of diagrams and illustrations:
+- **Download**: [Color Images PDF](https://static.packt-cdn.com/downloads/9781801073448_ColorImages.pdf)
+
+### 📚 More Books from Packt
+Explore our extensive collection of programming and technology books:
+- **Browse**: [Packt Publishing GitHub Repository](https://github.com/PacktPublishing/)
+
+---
+
+## 🎯 What You'll Learn
+
+This book covers essential topics including:
+- **Data Structures**: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, and Hash Tables
+- **Algorithms**: Sorting, Searching, Graph Traversal, Dynamic Programming
+- **Complexity Analysis**: Time and Space Complexity, Big O Notation
+- **Practical Implementation**: Real-world examples and hands-on exercises
+
+## 🚀 Getting Started
+
+1. **Download the bonus content** for additional chapters
+2. **Clone the repository** to access all source code
+3. **Follow along** with the color images for better understanding
+4. **Practice** with the provided exercises and examples
+
+Happy coding! 🐍✨
