@@ -1,0 +1,177 @@
+# Chapter 2: React Components & JSX
+
+## 📖 Key Definitions
+
+### React
+**React** is a JavaScript library (not a brand new language) for building user interfaces.
+
+### Components
+**Components** are reusable building blocks used to build user interfaces. They are combined to compose the final user interface. A function will be treated as a component and can use HTML elements in JSX if it returns a renderable value.
+
+### JSX
+**JSX** = JavaScript + XML-like syntax. It's a syntax extension that lets you write UI code that looks like HTML inside your JavaScript/TypeScript.
+
+### Component Types
+- **Class-based components**: Components defined via the `class` keyword (not relevant anymore)
+- **Functional components**: Components defined via regular JavaScript functions (modern approach)
+
+---
+
+## 🎯 Rules for Functional Components
+
+1. **Capitalized Names**: Component functions carry capitalized names (e.g., `SubmitButton`)
+2. **Inner Functions**: Inside component functions, other "inner" functions can be defined (e.g., `handleSubmit`, typically written in camelCase)
+3. **Return JSX**: Component functions return HTML-like code (JSX code)
+4. **React Hooks**: Features like `useState()` can be used inside component functions
+5. **Export**: Component functions are exported (via `export default`)
+6. **Import**: Certain features (like `useState` or custom components like `SubmitButton`) are imported via the `import` keyword
+
+---
+
+## 🔧 Component Usage
+
+Once a function qualifies as a React component, it can be used like an HTML element inside JSX code, just as `<SubmitButton />` is used like a (self-closing) HTML element.
+
+> **Note**: In JavaScript, functions are called first-class objects, which means you can pass functions as arguments to other functions.
+
+### Example: Basic Component Structure
+
+```jsx
+function Greeting() {
+    return <p>Welcome to this book!</p>;
+}
+
+function App() {
+    return (
+        <div>
+            <h2>Hello World!</h2>
+            <Greeting />
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+```
+
+### 📁 Component Organization
+Custom components are typically stored inside a `src/components/` folder.
+
+---
+
+## 🎨 Understanding JSX
+
+### What is JSX?
+- JSX is a feature that's **not** part of vanilla JavaScript
+- JSX is **not** part of the React library itself
+- In the background, JSX is converted to regular JavaScript (JSX is syntactic sugar)
+- Instructions are first executed in the Virtual DOM, then applied to the real DOM
+
+---
+
+## 📝 JSX Elements as JavaScript Values
+
+### Key Concepts:
+1. **JSX elements are regular JavaScript values** (functions, to be precise)
+2. **Same rules** that apply to JavaScript values also apply to JSX elements
+3. **Single return rule**: In a place where only one value is expected (e.g., after `return` keyword), you must only have one JSX element
+
+### ❌ Wrong - Two values being returned:
+```jsx
+function Calculate(a, b) {
+    return (
+        a + b
+        a - b  // This is invalid!
+    );
+}
+```
+
+### ✅ Correct - Array with two values:
+```jsx
+function Calculate(a, b) {
+    return [
+        a + b,
+        a - b
+    ];
+}
+```
+
+---
+
+## 🧩 React Fragments
+
+**React Fragment** is a built-in component that allows you to return or define sibling JSX elements without adding extra DOM nodes.
+
+### Syntax: `<>` `</>`
+
+```jsx
+function App() {
+    return (
+        <>
+            <p>Hello World!</p>
+            <p>Let's learn React</p>
+        </>
+    );
+}
+```
+
+---
+
+## 🖼️ Rendering Images
+
+### Important Rules:
+- `<img />` **must** be a self-closing tag
+- When displaying local images stored inside the `src/` folder, you **must** import them into your `.jsx` files
+
+### ❌ Wrong Approach:
+```jsx
+<img src="assets/images/wave.jpg" />  // Will not load in production
+```
+
+**Why this fails**: When you run `npm run build`, a new `dist` folder appears with content that will be deployed to a server. Since you cannot tell the local path of the image in production, this approach fails.
+
+### ✅ Correct Approach:
+```jsx
+import myImage from './assets/my-image.png';
+
+function App() {
+    return <img src={myImage} />;
+}
+```
+
+---
+
+## 🤔 When Should You Split Components?
+
+### Best Practice Rule:
+**Create a React component for every single data entity.**
+
+This approach helps maintain:
+- **Reusability**: Components can be used in multiple places
+- **Maintainability**: Easier to update and debug
+- **Separation of Concerns**: Each component handles its own logic
+- **Readability**: Code is more organized and understandable
+
+---
+
+## 🔄 Self-Closing Tags
+
+A **self-closing tag** is an HTML or JSX element that doesn't need separate opening and closing tags because it doesn't contain any content between them.
+
+### Examples:
+```jsx
+// HTML elements
+<img src="logo.png" alt="Logo" />
+<input type="email" placeholder="Enter email" />
+<br />
+
+// Custom React components
+<Greeting />
+<SubmitButton />
+<App />
+```
+
+### Key Points:
+- **No content inside**: Self-closing tags don't have content between opening and closing tags
+- **Syntax**: End with `/>` instead of having separate `</tagname>`
+- **Equivalent forms**: `<Component />` is the same as `<Component></Component>` when there's no content
