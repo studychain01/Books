@@ -20,3 +20,18 @@
 
 **Description**: Comprehensive API reference for LangChain chains - reusable components that encode sequences of calls to models, retrievers, and other chains. Includes classes like LLMChain, RetrievalQA, ConversationalRetrievalChain, and various document processing chains. Chains provide stateful, observable, and composable interfaces for building complex AI applications.
 
+## 🧪 LangChain Experimental API Reference
+**Link**: https://python.langchain.com/api_reference/experimental/index.html
+
+**Description**: API reference for langchain-experimental (v0.3.5rc1) containing cutting-edge features including autonomous agents (AutoGPT, BabyAGI), specialized agent toolkits (CSV, Pandas, Python, Spark), Tree of Thought (ToT) implementations, generative agents, smart LLMs, and experimental tools for data analysis, video captioning, and synthetic data generation.
+
+## 🐼 Pandas DataFrame Agent
+**Link**: https://python.langchain.com/api_reference/experimental/agents/langchain_experimental.agents.agent_toolkits.pandas.base.create_pandas_dataframe_agent.html
+
+**Description**: Experimental agent toolkit for creating Pandas DataFrame agents. Allows LLMs to interact with and analyze Pandas DataFrames through natural language queries, enabling data exploration, manipulation, and analysis tasks directly from conversational interfaces.
+
+## 🤖 LangChain Agent Types
+**Link**: https://python.langchain.com/api_reference/langchain/agents/langchain.agents.agent_types.AgentType.html
+
+**Description**: Enumeration of available agent types in LangChain including ZERO_SHOT_REACT_DESCRIPTION, REACT_DOCSTORE, SELF_ASK_WITH_SEARCH, CONVERSATIONAL_REACT_DESCRIPTION, OPENAI_FUNCTIONS, and more. Note: This is deprecated - LangGraph is now recommended for new agent implementations with more flexible and full-featured framework capabilities.
+

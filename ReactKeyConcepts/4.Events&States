@@ -1,0 +1,121 @@
+# Chapter 4: Events & State
+
+## 🎯 What is State?
+
+**State** is a React feature that allows developers to update internal data and trigger a UI update based on such data adjustments.
+
+## 📋 Key Concepts
+
+- **Props** are about receiving external data inside a component
+- **State** is about managing the internal data within a component
+- Whenever state is updated, React goes ahead and updates the parts of the UI that are affected by the state change
+
+---
+
+## 🎪 React Events
+
+You can add event listeners to JSX elements using special props like `onBlur`, `onClick`, etc.
+
+### 🔑 Form & Input Events
+
+| Event | Description |
+|-------|-------------|
+| `onChange` | Runs whenever input value changes |
+| `onBlur` | Runs when input loses focus |
+| `onFocus` | Runs when input gains focus |
+| `onSubmit` | Runs when a form is submitted |
+
+### 🖱️ Mouse Events
+
+| Event | Description |
+|-------|-------------|
+| `onClick` | Runs when element is clicked |
+| `onDoubleClick` | Runs when element is double-clicked |
+| `onMouseEnter` | Runs when mouse enters element |
+| `onMouseLeave` | Runs when mouse leaves element |
+
+### ⌨️ Keyboard Events
+
+| Event | Description |
+|-------|-------------|
+| `onKeyDown` | Fires when a key is pressed down |
+| `onKeyUp` | Fires when a key is released |
+| `onKeyPress` | ⚠️ **Legacy** - avoid now, use `onKeyDown` or `onKeyUp` |
+
+### 📦 Other Events
+
+| Event | Description |
+|-------|-------------|
+| `onLoad` | Runs when an image or resource is loaded |
+| `onError` | Runs when an error happens (e.g., image fails to load) |
+| `onScroll` | Runs when user scrolls |
+
+---
+
+## 🪝 React Hooks
+
+**Hooks** are special functions used inside React components. They add special features and behaviors to the React components in which they are used.
+
+### useState Hook
+
+`useState` is the most commonly used hook. It allows you to manage data inside a component which, when updated, tells React to update the UI.
+
+#### Core Concept
+> State is data, which when changed, should force React to re-evaluate a component and update the UI if needed.
+
+#### What does useState do?
+
+- `useState` is the **state hook**
+- It gives your function component its own **memory**
+- Returns an array with **two items**:
+  1. The current state value
+  2. A function to update that value
+
+#### How it Works
+
+The second function (state setter) also informs React that a state value changed and that the UI might therefore be in need of an update.
+
+React determines the new target UI by re-running any component functions that are affected by the state change.
+
+---
+
+## 💡 State Management Best Practices
+
+### 1. Flexible Data Types
+React gives you flexibility in managing all these values as state. You can switch value type at runtime - it's fine to store a number as initial state and update it to a string at a later point in time.
+
+### 2. Multiple State Slices
+Let's say a user is entering email and password - you need to manage the state for both. You can use multiple state slices:
+
+```javascript
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+```
+
+### 3. Updating State Based on Previous State
+
+When working with objects or arrays as state values, it's important to add the existing properties and elements to the new state value to avoid accidentally overwriting or losing data.
+
+**Example:**
+```javascript
+const [counter, setCounter] = useState(0);
+
+function handleIncrement() {
+    setCounter(counter + 1);
+}
+```
+
+---
+
+## 🔄 Advanced Concepts
+
+### Two-Way Binding
+Two-Way Binding is a concept used when you have an input source (typically an `<input>` element) that:
+- Sets some state upon user input (e.g., on the `change` event)
+- Outputs the input value at the same time
+
+### Deriving Values from State
+You can use state values anywhere in your component and in child components by passing state into them via props.
+
+### Lifting State Up
+When multiple components need to share the same state, you should lift the state up to their closest common ancestor component. 
